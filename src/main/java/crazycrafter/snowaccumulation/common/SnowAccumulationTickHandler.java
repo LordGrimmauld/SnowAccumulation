@@ -16,8 +16,8 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.LightType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class SnowAccumulationTickHandler {
@@ -61,7 +61,7 @@ public class SnowAccumulationTickHandler {
 		    				if(worldserver.getBlockState(pos1).getBlock() instanceof SnowBlock)
 		    			    {
 		    					//Check if valid Y, correct light, and correct temp for snow formation
-		    			    	if(pos1.getY() >= 0 && pos1.getY() < 256 && worldserver.getLightFor(LightType.BLOCK, pos1 ) < 10 &&worldserver.getBiome(pos1).getTemperature(pos1) < 0.15F)
+		    			    	if(pos1.getY() >= 0 && pos1.getY() < 256 && worldserver.getLightLevel(LightType.BLOCK, pos1 ) < 10 &&worldserver.getBiome(pos1).getTemperature(pos1) < 0.15F)
 		    			    	{
 		    			    		//Calculate mean surrounding block height
 		    			    		int height = worldserver.getBlockState(pos1).get(SnowBlock.LAYERS);
